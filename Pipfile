@@ -8,6 +8,12 @@ verify_ssl = true
 [packages]
 django = "*"
 psycopg2-binary = "*"
+pillow = "*"
+django-tinymce4-lite = "*"
+django-allauth = "*"
+django-widget-tweaks = "*"
+python-dotenv = "*"
+python-decouple = "*"
 
 [requires]
 python_version = "3.7"

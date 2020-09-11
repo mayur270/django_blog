@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Snapshot | {% block title %}Home{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'blog/vendors/flag-icon-css/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/vendors/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/vendors/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <script src="{% static 'blog/vendors/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'blog/js/loader.js' %}"></script>
+</head>
+<body>
+    <div class="edica-loader"></div>
+    <header class="edica-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="nav-link bg-success text-white" href="{% url 'blog_home' %}">SNAPSHOT</a>
+                <!-- <a class="navbar-brand" href="index.html"><img src="assets/images/logo.svg" alt="Edica"></a> -->
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="edicaMainNav">
+                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'blog_home' %}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog_about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog_contact' %}">Contact</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav mt-2 mt-lg-0 ml-auto">
+                        <li class="nav-item">
+                          <form action="{% url 'blog_search' %}" class="pt-1 search_input" autocomplete="off">
+                            {% csrf_token %}
+                            <input id="s" name="q" type="text" class="bg-success text-white" aria-label="Search" placeholder="Search and press Enter" autofocus required />
+                          </form>
+                        </li>
+                        {% if not request.user.is_authenticated%}
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item create_button">
+                          <a class="nav-link" href="{% url 'blog_create' %}">Add Post</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user}} <i class="fas fa-user-alt"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="blogDropdown">
+                                <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock content %}
+
+    <footer class="edica-footer">
+        <div class="container">
+            <div class="row footer-widget-area">
+                <div class="col-md-3">
+                    <p class="contact-details">hello@snapshot.com</p>
+                    <p class="contact-details">+87 879 98 87 87</p>
+                    <nav class="footer-social-links">
+                        <a href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#!"><i class="fab fa-twitter"></i></a>
+                    </nav>
+                </div>
+                <div class="col-md-6 text-center">
+                  <a href="{% url 'blog_home' %}" class="contact-details text-success"><h1>SNAPSHOT</h1></a>
+                </div>
+                <div class="col-md-3 mx-auto">
+                  <nav class="footer-nav">
+                      <a href="{% url 'blog_home' %}" class="nav-link">Home</a>
+                      <a href="{% url 'blog_about' %}" class="nav-link">About</a>
+                      <a href="{% url 'blog_contact' %}" class="nav-link">Contact</a>
+                  </nav>
+                </div>
+            </div>
+            <div class="footer-bottom-content">
+                <nav class="nav footer-bottom-nav">
+                    <a href="#">Privacy & Policy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Site Map</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'blog/vendors/popper.js/popper.min.js' %}"></script>
+    <script src="{% static 'blog/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/vendors/aos/aos.js' %}"></script>
+    <script src="{% static 'blog/js/main.js' %}"></script>
+    <script>
+        AOS.init({
+            duration: 1000
+        });
+      </script>
+</body>
+
+</html>

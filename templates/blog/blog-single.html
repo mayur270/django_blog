@@ -1,0 +1,84 @@
+{% extends 'blog/_base.html' %}
+{% load static %}
+
+{% block title %}Post{% endblock title %}
+
+{% block content %}
+    <main class="blog-post">
+        <div class="container">
+            <h1 class="edica-page-title" data-aos="fade-up">{{blog_detail_post.title}}</h1>
+            <p class="edica-blog-post-meta mb-5">
+              <span class="mr-2">Written by {{blog_detail_post.author}}</span> •
+              <span class="mx-2">{{blog_detail_post.timestamp|date}} at {{blog_detail_post.timestamp|time}}</span> •
+              <span class="ml-2 mr-1">{% for cat in blog_detail_post.categories.all %}{% if not forloop.first %} | {% endif %}{% if forloop.first %}<span class="blog-post-category category mr-1">{{cat.title}}</span>{% else %}<span class="blog-post-category category mx-1">{{cat.title}}</span>{% endif %}{% endfor %}</span> •
+              <span class="ml-2">{{blog_detail_post.comment_count}} Comments</span>
+            </p>
+
+            <section class="post-content">
+                <div class="row">
+                  {% if request.user.is_authenticated %}
+                  <div class="col-lg-9 mx-auto mb-3">
+                    {% if blog_detail_post.author.user.username == request.user.username %}
+                    <span class="mr-0"><button type="button" name="button" class="bg-success text-white" style="border-radius:0.7rem;"><a href="{% url 'blog_update' id=blog_detail_post.id %}" class="text-white" style="text-decoration:none; font-family: var(--font-family-sans-serif);">Edit Post</a></button></span>
+                    <span class="ml-0"><button type="button" name="button" class="bg-danger text-white" style="border-radius:0.7rem;"><a href="{% url 'blog_delete' id=blog_detail_post.id %}" class="text-white" style="text-decoration:none; font-family: var(--font-family-sans-serif);">Delete Post</a></button></span>
+                    {% endif %}
+                  </div>
+                  {% endif %}
+                  <div class="col-lg-9 mx-auto">
+                    {{blog_detail_post.content | safe}}
+                  </div>
+                </div>
+            </section>
+
+            <div class="row">
+                <div class="col-lg-9 mx-auto">
+                    <section class="related-posts mb-2">
+                      {% if blog_detail_post.comments.count %}
+                      <h2 class="section-title mb-4">{{blog_detail_post.comments.count}} Comments</h2>
+                      {% else %}
+                      <h2 class="section-title">No Comments</h2>
+                        {% if request.user.is_authenticated %}
+                        {% else %}
+                        <h6><a href="{% url 'account_login' %}">Login to comment</a></h6>
+                        {% endif %}
+                      {% endif %}
+
+                      <div class="row">
+                        <ul class="comment-list" style="list-style-type: none">
+                          {% for comment in blog_detail_post.get_comments %}
+                          <li class="comment">
+                            <div class="comment-body">
+                              <h3>{{comment.user.username}}</h3>
+                              <div class="meta">{{comment.timestamp|date}} at {{comment.timestamp|time}}</div>
+                              <p>{{comment.content}}</p>
+                            </div>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+
+                    </section>
+                    {% if request.user.is_authenticated %}
+                    <section class="comment-section">
+                        <h2 class="section-title mb-5">Leave your comment</h2>
+                        <form action="" method="post">
+                          {% csrf_token %}
+                          <div class="row">
+                              <div class="form-group col-12 mb-2">
+                              <label for="comment" class="sr-only">Comment</label>
+                              {{ form.as_p }}
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-12">
+                                  <input type="submit" value="Send Message" class="btn btn-success">
+                              </div>
+                          </div>
+                        </form>
+                    </section>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

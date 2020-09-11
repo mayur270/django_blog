@@ -1,0 +1,62 @@
+{% extends 'blog/_base.html' %}
+{% load static %}
+
+{% block title %}Search Results{% endblock title %}
+
+{% block content %}
+    <main class="blog">
+        <div class="container">
+            <h1 class="edica-page-title my-0 py-5" data-aos="fade-up"><span class="text-success">Snapshot</span> Blog</h1>
+            <section class="featured-posts-section">
+              <h2>Search results</h2>
+                <div class="row">
+                    {% for each_result in all_posts %}
+                      <div class="col-md-4 fetured-post blog-post my-4" data-aos="fade-right">
+                          <div class="blog-post-thumbnail-wrapper">
+                              <img src="{{each_result.thumbnail.url}}" alt="blog post">
+                          </div>
+                          <div class="post-meta">
+                            {% for cat in each_result.categories.all %}
+                            {% if not forloop.first %} | {% endif %}
+                            {% if forloop.first %}<span class="blog-post-category category mr-2">{{cat.title}}</span>
+                            {% else %}<span class="blog-post-category category mx-2">{{cat.title}}</span>
+                            {% endif %}
+                            {% endfor %}
+                          </div>
+                          <div class="">
+                            <span class="mr-2">{{each_result.timestamp|date}}</span> &bullet;
+                            <span class="ml-2"><span class="fa fa-comments"></span> {{each_result.comment_count}}</span> &bullet;
+                            <span class="Author ml-2">By {{each_result.author.user.username}}</span>
+                          </div>
+                          <a href="#!" class="blog-post-permalink">
+                              <h6 class="blog-post-title">{{ each_result.title }}</h6>
+                          </a>
+                      </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pagination p1 pb-5">
+                      <ul class="mx-auto">
+                        {% if all_posts.has_previous %}
+                        <a href="?{{ page_request}}={{all_posts.previous_page_number}}" class="text-success"><li><<</li></a>
+                        {% endif %}
+                        <a class="is-active bg-success" href="?{{ page_request}}={{all_posts.number}}"><li>1</li></a>
+                        {% if all_posts.has_next %}
+                        <a href="?{{ page_request}}={{all_posts.next_page_number}}" class="text-success"><li>>></li></a>
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+        </div>
+
+    </main>
+{% endblock content %}

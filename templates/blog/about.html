@@ -1,0 +1,31 @@
+{% extends 'blog/_base.html' %}
+{% load static %}
+
+{% block title %}About{% endblock title %}
+
+{% block content %}
+    <main class="mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-11 mx-auto">
+                    <h1 class="edica-page-title py-5" data-aos="fade-up">About Us</h1>
+
+                    <section class="edica-about-vision py-5">
+                        <div class="row">
+                            <div class="col-md-6 pb-3 pb-md-0 mb-4 mb-md-0" data-aos="fade-right" data-aos-delay="200">
+                                <img src="{% static 'blog/images/martina_lorez.jpg' %}" alt="vision" class="img-fluid">
+                            </div>
+                            <div class="col-md-6 d-flex flex-column justify-content-center">
+                                <h2 class="vision-title">Hi! I'm Martina Lorez</h2>
+                                <p class="vision-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum minima eveniet recusandae suscipit eum laboriosam fugit amet deleniti iste et. Ad dolores, necessitatibus non saepe tenetur impedit commodi quibusdam natus repellat, exercitationem accusantium perferendis officiis. Laboriosam impedit quia minus pariatur!</p>
+                                <p class="vision-text">Dignissimos iste consectetur, nemo magnam nulla suscipit eius quibusdam, quo aperiam quia quae est explicabo nostrum ab aliquid vitae obcaecati tenetur beatae animi fugiat officia id ipsam sint? Obcaecati ea nisi fugit assumenda error totam molestiae saepe fugiat officiis quam?</p>
+                                <p class="vision-text">Culpa porro quod doloribus dolore sint. Distinctio facilis ullam voluptas nemo voluptatum saepe repudiandae adipisci officiis, explicabo eaque itaque sed necessitatibus, fuga, ea eius et aliquam dignissimos repellendus impedit pariatur voluptates. Dicta perferendis assumenda, nihil placeat, illum quibusdam. Vel, incidunt?</p>
+                                <p class="vision-text">Dolorum blanditiis illum quo quaerat, possimus praesentium perferendis! Quod autem optio nobis, placeat officiis dolorem praesentium odit. Vel, cum, a. Adipisci eligendi eaque laudantium dicta tenetur quod.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends 'blog/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Add Post{% endblock title %}
+
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 bg-success my-4 mb-5 pb-5">
+                <h1 class="edica-page-title pt-5 pb-4 text-center text-white">{{title}} Post</h1>
+                <section class="edica-contact">
+                    <div class="row">
+                      <div class="col-md-12 contact-form-wrapper">
+                        {{form.media}}
+                        <form class="mx-auto text-center form" action="" method="post" enctype='multipart/form-data' autocomplete="off">
+                          {% csrf_token %}
+                          <div class="row d-block">
+                              <div class="col-md-7 form-group mx-auto text-left">
+                                  <label for="title" class="text-white">Title</label>
+                                  {% render_field form.title class="form-control title_control" placeholder="Title" %}
+                              </div>
+                              <div class="col-md-7 form-group mx-auto text-left">
+                                  <label for="content" class="text-white">Content</label>
+                                  {% render_field form.content class="form-control" placeholder="Content" %}
+                              </div>
+
+                              <div class="col-md-7 form-group mx-auto text-left">
+                                  <label for="thumbnail" class="text-white">Thumbnail</label>
+                                  {% render_field form.thumbnail class="form-control file-control" %}
+                              </div>
+                              <div class="col-md-7 form-group mx-auto text-left">
+                                  <label for="categories" class="text-white">Categories</label>
+                                  {% render_field form.categories class="form-control" %}
+                              </div>
+                              <div class="col-md-7 form-group mx-auto text-left">
+                                  <label for="featured" class="text-white">Featured</label>
+                                  {% render_field form.featured %}
+                              </div>
+                              <div class="col-lg-4 form-group mx-auto">
+                                <button type="submit" class="btn btn-dark btn-lg w-100 py-2 mt-3 text-white" style="border-radius: 0.7rem;">{{title}} Post</button>
+                              </div>
+                          </div>
+                        </form>
+                      </div>
+                  </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

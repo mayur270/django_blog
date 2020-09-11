@@ -1,0 +1,41 @@
+{% extends 'blog/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 bg-success my-3 mb-5 pb-5">
+                    <h1 class="edica-page-title pt-5 pb-4 text-center text-white">Login</h1>
+                    <section class="edica-contact">
+                        <div class="row">
+                          <div class="col-md-12 contact-form-wrapper">
+                            <form class="  mx-auto text-center form" action="" method="post" autocomplete="off">
+                              {% csrf_token %}
+                              <div class="row d-block">
+                                  <div class="col-md-4 form-group mx-auto text-left">
+                                      <label for="name" class="text-white">Username</label>
+                                      {{ form.login|add_class:'form-control' }}
+                                  </div>
+                                  <div class="col-md-4 form-group mx-auto text-left">
+                                      <label for="password" class="text-white">Password</label>
+                                      {{ form.password|add_class:'form-control' }}
+                                  </div>
+                                  <div class="col-lg-4 form-group mx-auto">
+                                    <button type="submit" class="btn btn-dark btn-lg w-100 py-2 mt-3 text-white" style="border-radius: 0.7rem;">Sign In</button>
+                                  </div>
+                              </div>
+                            </form>
+                            <div class="col-md-12 text-center pt-2">
+                              <p><a href="{% url 'account_signup' %}" class="text-white">Create an Account</a></p>
+                            </div>
+                          </div>
+                      </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

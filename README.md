@@ -13,16 +13,16 @@ PASSWORD: testpass123
 
 Below are some screenshots:
 1. Homepage - Header
-![](screenshots/homepage_header.jpg)
+!['Homepage-Header'](screenshots/homepage_header.JPG)
 
 2. Homepage - Footer
-![](screenshots/homepage_footer.jpg)
+!['Homepage-Footer'](screenshots/homepage_footer.JPG)
 
 3. Login Page
-![](screenshots/login_page.jpg)
+!['Login Page'](screenshots/login_page.JPG)
 
 4. Single Post Page
-![](screenshots/single_post_page.jpg)
+!['Single Post Page'](screenshots/single_post_page.JPG)
 
 5. Contact Page
-![](screenshots/contact_page.jpg)
+!['Contact Page'](screenshots/contact_page.JPG)

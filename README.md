@@ -4,7 +4,7 @@ Individual users can create, delete, update their own posts as well as add comme
 To run the application:
 
 1. Run docker using 'docker-compose up -d --build'
-2. In your browser, go to 127.0.0.1/
+2. In your browser, go to 127.0.0.1:8000
 3. Create an account to add, update, delete post
 
 For backend details:
